@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@import "./assets/type.css";
+*{
+  font-family: 'Aeroport', sans-serif;
+}
+:root {
+  --swiper-navigation-color: #c0baba; /* Gray navigation arrows */
+  --swiper-pagination-color: #c0baba; /* Gray pagination dots */
+}
+.swiper-button-prev {
+  left: 15%;
+}
+
+.swiper-button-next {
+  right: 15%;
+}
+
+/* Hide arrows on screens smaller than 1200px */
+@media (max-width: 1280px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
+
+.smoke-effect {
+  position: relative;
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.7),
+    0 0 24px rgba(255, 255, 255, 0.6),
+    0 0 36px rgba(255, 255, 255, 0.5),
+    0 0 48px rgba(255, 255, 255, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.3);
+}
+
+
+
+.list-meta-language{
+  font-family: 'Aeroport', sans-serif;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  display: inline;
+  padding-right: .375rem;
+  margin-right: .375rem;
+  border-right: 1px solid #cbd6dd;
+  color: #002844;
+}
