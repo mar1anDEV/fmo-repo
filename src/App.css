@@ -4,15 +4,27 @@
   font-family: 'Aeroport', sans-serif;
 }
 :root {
-  --swiper-navigation-color: #c0baba; /* Gray navigation arrows */
-  --swiper-pagination-color: #c0baba; /* Gray pagination dots */
+  --swiper-navigation-color: #e0e0e0; /* Lighter gray navigation arrows */
+  --swiper-pagination-color: #e0e0e0; /* Lighter gray pagination dots */
 }
+
+.has-border{
+  border-right: 2px solid #00000011;
+}
+
+
+
+
+
 .swiper-button-prev {
   left: 15%;
+  color: #f0f0f0;
+ 
 }
 
 .swiper-button-next {
   right: 15%;
+  color: #f0f0f0;
 }
 
 /* Hide arrows on screens smaller than 1200px */
@@ -23,6 +35,11 @@
   }
 }
 
+#j-active a,
+#active {
+  color: #002844 !important;
+  font-weight: 500;
+}
 .smoke-effect {
   position: relative;
   text-shadow:

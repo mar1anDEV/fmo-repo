@@ -82,7 +82,7 @@ function Carousel() {
     effect="fade"
     autoplay={{
       delay: 5000,
-      disableOnInteraction: true,
+      disableOnInteraction: false,
     }}
     loop={true}
   >

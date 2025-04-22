@@ -9,10 +9,10 @@ function Header() {
   
   
   const metaMenuLinks = [
-    { name: 'Jobs', path: 'https://www.fmo.de/arbeiten-am-fmo/' },
-    { name: 'DE', path: '#', isLanguage: true, isActive: true },
-    { name: 'EN', path: '#', isLanguage: true, isActive: false },
-    { name: 'NL', path: '#', isLanguage: true, isActive: false },
+    
+    { name: 'DE', path: '#', isLanguage: true, isActive: true, hasBorder: true},
+    { name: 'EN', path: '#', isLanguage: true, isActive: false, hasBorder: true },
+    { name: 'NL', path: '#', isLanguage: true, isActive: false,hasBorder: false },
   ];
   const [activeLanguage, setActiveLanguage] = useState(
     metaMenuLinks.find(language => language.isLanguage)?.name || ''
@@ -76,12 +76,20 @@ function Header() {
               {/* Top row: Meta menu and search */}
               <div className="flex items-center justify-end">
                 <ul className="flex items-center space-x-2 mr-4">
+                  <div className='jobs w-10 mr-6 relative'>
+                      <a href="https://www.fmo.de/arbeiten-am-fmo/" className='m-auto'>Jobs</a>
+                      
+                            <div className="absolute flex justify-center align-middle w-4 h-4 bg-red-600 top-[-6px] right-[-5px] rounded-full">
+                                <span className='text-white font-[100] text-[10px]'>5</span>
+                            </div>
+                         
+                  </div>
                   {metaMenuLinks.map((link, index) => (
-                    <li key={index}>
+                    <li key={index} id={link.isJobs ? 'j-active' : undefined}>
                       <a 
                         href={link.path} 
                         id={link.isLanguage && link.isActive ? 'active' : undefined}
-                        className={`text-md hover:text-blue-700 ${link.isLanguage && link.isActive ? 'font-medium text-[#002844]' : ''}`}
+                        className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
                         style={{ color: '#00284480' }}
                       >
                         {link.name}
@@ -177,17 +185,28 @@ function Header() {
                 </form>
           </div>
           <ul className="flex items-center space-x-2 mr-4">
-            {metaMenuLinks.map((link, index) => (
-              link.isLanguage ?  (<li key={index} onClick={()=> activeLanguage && setActiveLanguage(link.name)}>
-                
-              <a href={link.path}
-               className={`text-md hover:text-blue-700 ${link.isLanguage ? 'font-medium' : ''}`}
-               style={{ color: '#002844' }}
-             >
-               {link.name}
-             </a>
-           </li>)
-           : null ))}
+
+          <div className='jobs w-10 mr-6 relative'>
+                      <a href="https://www.fmo.de/arbeiten-am-fmo/" className='m-auto'>Jobs</a>
+                      
+                            <div className="absolute flex justify-center align-middle w-4 h-4 bg-red-600 top-[-6px] right-[-5px] rounded-full">
+                                <span className='text-white font-[100] text-[10px]'>5</span>
+                            </div>
+                         
+                  </div>
+
+                  {metaMenuLinks.map((link, index) => (
+                    <li key={index} id={link.isJobs ? 'j-active' : undefined}>
+                      <a 
+                        href={link.path} 
+                        id={link.isLanguage && link.isActive ? 'active' : undefined}
+                        className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
+                        style={{ color: '#00284480' }}
+                      >
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
           </ul>
           <ul className="social-links flex items-center space-x-2 mr-4">
   {socialLinks.map((item) => (
