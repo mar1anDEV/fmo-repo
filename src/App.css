@@ -17,18 +17,31 @@
 
 
 .swiper-button-prev {
-  left: 15%;
   color: #f0f0f0;
- 
+  left: 5%;
 }
 
 .swiper-button-next {
-  right: 15%;
   color: #f0f0f0;
+  right: 5%;
 }
 
-/* Hide arrows on screens smaller than 1200px */
-@media (max-width: 1280px) {
+
+@media (min-width: 1600px) {
+
+  .swiper-button-prev {
+    left: 15%;
+  }
+
+  .swiper-button-next {
+    right: 15%;
+  }
+  .banner--text{
+    top: 40%;
+    left: 20%;
+  }
+}
+@media (max-width: 1300px) {
   .swiper-button-prev,
   .swiper-button-next {
     display: none;

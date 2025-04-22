@@ -12,7 +12,7 @@ function Carousel() {
         {
             id: 2,
             title: 'Sightseeing in London',
-            titleClass: 'text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl text-[#002844] font-bold',
+            titleClass: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl text-[#002844] font-bold',
             description:'Mit Ryanair in die britische Metropole',
             descriptionClass: 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#212529] font-semibold',
             images: {
@@ -29,9 +29,9 @@ function Carousel() {
           {
             id: 3,
             title: '#wirfliegenabhier',
-            titleClass: 'text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#002844] font-bold',
+            titleClass: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl text-[#002844] font-bold',
             description: 'Mickie Krause auch!',
-            descriptionClass: 'text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#002844] font-semibold',
+            descriptionClass: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-5xl text-[#002844] font-semibold',
             images: {
               default: 'https://www.fmo.de/fileadmin/Content/Home/MK_Slider.jpg',
               xs: 'https://www.fmo.de/fileadmin/_processed_/6/0/csm_MK_Slider_c8504fdae1.jpg',
@@ -46,7 +46,7 @@ function Carousel() {
           {
             id: 4,
             title: 'Volle Kanne Ryanair!',
-            titleClass: 'text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#002844] font-bold',
+            titleClass: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl text-[#002844] font-bold',
             description: (
               <>
                 Alicante, Korfu, London, Málaga, Palma und Zadar zu<br />
@@ -101,7 +101,7 @@ function Carousel() {
             className="w-full h-full object-cover"
           />
         </picture>
-        <div className="banner--text flex flex-col absolute top-[40%] left-[5%] sm:left-[8%] md:left-[10%] lg:left-[15%] xl:left-[20%] z-50">
+        <div className="banner--text top-[40%] left-[3%] sm:left-[5%] md:left-[5%] lg:left-[8%] flex flex-col gap-3 absolute z-50">
   <span className={`banner--title smoke-effect ${banner.titleClass || ''}`}>{banner.title}</span>
   <span className={`banner--gradient smoke-effect ${banner.descriptionClass || ''}`}>{banner.description}</span>
 </div>

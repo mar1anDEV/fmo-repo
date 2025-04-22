@@ -90,7 +90,7 @@ function Header() {
                         href={link.path} 
                         id={link.isLanguage && link.isActive ? 'active' : undefined}
                         className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
-                        style={{ color: '#00284480' }}
+                        style={{ color: '#00284480'}}
                       >
                         {link.name}
                       </a>
