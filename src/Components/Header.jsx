@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useCallback } from 'react';
 import btnMenu from '../assets/images/mobile-menu-icon.svg'
 import { FaLeaf, FaSearch, FaYoutube, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import logo from '../assets/images/logo.svg';
@@ -7,16 +8,31 @@ import "../assets/type.css";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
+ 
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prevState => !prevState);
+  }, []);
+  
+ 
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
   
   const metaMenuLinks = [
-    
     { name: 'DE', path: '#', isLanguage: true, isActive: true, hasBorder: true},
     { name: 'EN', path: '#', isLanguage: true, isActive: false, hasBorder: true },
-    { name: 'NL', path: '#', isLanguage: true, isActive: false,hasBorder: false },
+    { name: 'NL', path: '#', isLanguage: true, isActive: false, hasBorder: false },
   ];
+  
   const [activeLanguage, setActiveLanguage] = useState(
     metaMenuLinks.find(language => language.isLanguage)?.name || ''
-  )
+  );
+  
+  
+  const handleLanguageChange = useCallback((language) => {
+    setActiveLanguage(language);
+    
+  }, []);
   
   const menuNavLinks = [
     { name: 'Anreise & Fliegen', path: 'https://www.fmo.de/flugplan-ziele/' },
@@ -54,17 +70,26 @@ function Header() {
     }
   ];
   
-  const footerlinks = [{linkName: "EASY PARK",hisPath:'https://parking.fmo.de/iPCP/admin/'},
+  const footerlinks = [
+    {linkName: "EASY PARK", hisPath:'https://parking.fmo.de/iPCP/admin/'},
     {linkName: "Imprint", hisPath: 'https://www.fmo.de/en/imprint/'},
-    {linkName:"Contact", hisPath: 'https://www.fmo.de/en/contact/'},
-    {linkName: "Privacy Policy", hisPath: 'https://www.fmo.de/en/privacy-policy/'}]
+    {linkName: "Contact", hisPath: 'https://www.fmo.de/en/contact/'},
+    {linkName: "Privacy Policy", hisPath: 'https://www.fmo.de/en/privacy-policy/'}
+  ];
+  
+  
+  const handleSearchSubmit = useCallback((e) => {
+    e.preventDefault();
+    
+  }, []);
+  
   return (
    <>
     <header className="fmo--nav w-full h-auto py-4 lg:py-2 z-50 relative" style={{ fontFamily: 'Aeroport, sans-serif' }}>
       <div className="container max-w-[1200px] mx-auto">
         
         <div className="flex mx-auto items-center container--nav--wrapper justify-between">
-         
+          
           <div className="lg:min-h-[120px] px-4 flex items-center">
             <a href="https://www.fmo.de">
               <img src={logo} alt="FMO Flughafen Münster/Osnabrück Logo" className='h-[35px] md:h-[40px] lg:h-[45px]'/>
@@ -97,7 +122,7 @@ function Header() {
                     </li>
                   ))}
                 </ul>
-                <form className="relative">
+                <form className="relative" onSubmit={handleSearchSubmit}>
                   <input 
                     type="text" 
                     placeholder="Suchen" 
@@ -130,7 +155,7 @@ function Header() {
               </ul>
             </div>
             <div className="toggleNav xl:hidden">
-              <button onClick={()=> setIsMenuOpen(!isMenuOpen)} aria-expanded={isMenuOpen} aria-controls='xs--sm--md--devices-nav'>
+              <button onClick={toggleMenu} aria-expanded={isMenuOpen} aria-controls='xs--sm--md--devices-nav'>
                 <div className='btn--nav--image--wrapper'>
                   <img src={btnMenu} alt="Toggle Menu"/>
                 </div>
@@ -140,11 +165,11 @@ function Header() {
         </div>
       </div>
       {isMenuOpen && (
-  <div 
-    className="fixed inset-0 z-40 transition-opacity duration-300 backdrop-blur-xs"
-    onClick={() => setIsMenuOpen(false)} 
-  ></div>
-)}
+        <div 
+          className="fixed inset-0 z-40 transition-opacity duration-300 backdrop-blur-xs"
+          onClick={closeMenu} 
+        ></div>
+      )}
       <nav id='xs--sm--md--devices-nav' className={`nab--mobile--tablet bg-white py-4 flex flex-col justify-between w-5/6 xl:hidden absolute top-0 left-0 z-50 transform transition-transform duration-500 min-h-[100dvh] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         
         <div className='nab--mobile--tablet-navTop overflow-y-auto grow'>
@@ -173,70 +198,66 @@ function Header() {
         
         <div className='nab--mobile--tablet-navBottom container grow justify-end gap-2.5 mt-auto px-6 flex flex-col'>
           <div className="nab--mobile--tablet-navBottom-search-wrapper w-full">
-          <form className="relative">
-          <input type="text" className='text-base py-2 pl-3 pr-10 w-full border outline-0 border-[#002844]' />
-                  <button 
-                    type="submit" 
-                    className="absolute inset-y-0 right-0 flex items-center px-3 text-white bg-[#002844] hover:text-blue-700"
-                    aria-label="Suche starten"
-                  >
-                    <FaSearch size={14} />
-                  </button>
-                </form>
+            <form className="relative" onSubmit={handleSearchSubmit}>
+              <input type="text" className='text-base py-2 pl-3 pr-10 w-full border outline-0 border-[#002844]' />
+              <button 
+                type="submit" 
+                className="absolute inset-y-0 right-0 flex items-center px-3 text-white bg-[#002844] hover:text-blue-700"
+                aria-label="Suche starten"
+              >
+                <FaSearch size={14} />
+              </button>
+            </form>
           </div>
           <ul className="flex items-center space-x-2 mr-4">
+            <div className='jobs w-10 mr-6 relative'>
+              <a href="https://www.fmo.de/arbeiten-am-fmo/" className='m-auto'>Jobs</a>
+              <div className="absolute flex justify-center align-middle w-4 h-4 bg-red-600 top-[-6px] right-[-5px] rounded-full">
+                <span className='text-white font-[100] text-[10px]'>5</span>
+              </div>
+            </div>
 
-          <div className='jobs w-10 mr-6 relative'>
-                      <a href="https://www.fmo.de/arbeiten-am-fmo/" className='m-auto'>Jobs</a>
-                      
-                            <div className="absolute flex justify-center align-middle w-4 h-4 bg-red-600 top-[-6px] right-[-5px] rounded-full">
-                                <span className='text-white font-[100] text-[10px]'>5</span>
-                            </div>
-                         
-                  </div>
-
-                  {metaMenuLinks.map((link, index) => (
-                    <li key={index} id={link.isJobs ? 'j-active' : undefined}>
-                      <a 
-                        href={link.path} 
-                        id={link.isLanguage && link.isActive ? 'active' : undefined}
-                        className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
-                        style={{ color: '#00284480' }}
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
+            {metaMenuLinks.map((link, index) => (
+              <li key={index} id={link.isJobs ? 'j-active' : undefined}>
+                <a 
+                  href={link.path} 
+                  id={link.isLanguage && link.isActive ? 'active' : undefined}
+                  className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
+                  style={{ color: '#00284480' }}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
           <ul className="social-links flex items-center space-x-2 mr-4">
-  {socialLinks.map((item) => (
-    <li key={item.name}>
-      <a 
-        href={item.path}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Link to ${item.name}`}
-      >
-        {item.icon}
-      </a>
-    </li>
-  ))}
-</ul>
-<div className="footer--wrapper">
-          <div className="footer-container mb-2.5">
-            <ul className='block columns-2'>
-              {footerlinks.map((link,index)=>(
-                <li key={index} className='block'>
-                  <a href={link.hisPath}>
-                    <span className='text-[#575757] font-thin'>{link.linkName}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {socialLinks.map((item) => (
+              <li key={item.name}>
+                <a 
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Link to ${item.name}`}
+                >
+                  {item.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="footer--wrapper">
+            <div className="footer-container mb-2.5">
+              <ul className='block columns-2'>
+                {footerlinks.map((link,index)=>(
+                  <li key={index} className='block'>
+                    <a href={link.hisPath}>
+                      <span className='text-[#575757] font-thin'>{link.linkName}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-        </div>
-        
       </nav>
     </header>
    </>
