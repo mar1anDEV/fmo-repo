@@ -62,18 +62,18 @@ function Header() {
    <>
     <header className="fmo--nav w-full h-auto py-4 lg:py-2 z-50 relative" style={{ fontFamily: 'Aeroport, sans-serif' }}>
       <div className="container max-w-[1200px] mx-auto">
-        {/* Top row with logo and meta menu */}
+        
         <div className="flex mx-auto items-center container--nav--wrapper justify-between">
-          {/* Logo */}
+         
           <div className="lg:min-h-[120px] px-4 flex items-center">
             <a href="https://www.fmo.de">
               <img src={logo} alt="FMO Flughafen Münster/Osnabrück Logo" className='h-[35px] md:h-[40px] lg:h-[45px]'/>
             </a>
           </div>
           <div className='meta--form--mainNavLinks--fmo-container px-4'>
-            {/*meta menu, form, and main navigation (desktop) */}
+            
             <div className="hidden xl:flex gap-2.5 relative flex-col items-end">
-              {/* Top row: Meta menu and search */}
+              
               <div className="flex items-center justify-end">
                 <ul className="flex items-center space-x-2 mr-4">
                   <div className='jobs w-10 mr-6 relative'>
@@ -142,11 +142,11 @@ function Header() {
       {isMenuOpen && (
   <div 
     className="fixed inset-0 z-40 transition-opacity duration-300 backdrop-blur-xs"
-    onClick={() => setIsMenuOpen(false)} // Optional: clicking outside closes nav
+    onClick={() => setIsMenuOpen(false)} 
   ></div>
 )}
       <nav id='xs--sm--md--devices-nav' className={`nab--mobile--tablet bg-white py-4 flex flex-col justify-between w-5/6 xl:hidden absolute top-0 left-0 z-50 transform transition-transform duration-500 min-h-[100dvh] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        {/* Top Navigation Section */}
+        
         <div className='nab--mobile--tablet-navTop overflow-y-auto grow'>
           <ul className='nab--mobile--tablet-navTop--inner pl-4 flex flex-col'>
             {menuNavLinks.map((navLink, navLinkIndex) => (
@@ -170,7 +170,7 @@ function Header() {
           </ul>
         </div>
         
-        {/* Bottom Search Section */}
+        
         <div className='nab--mobile--tablet-navBottom container grow justify-end gap-2.5 mt-auto px-6 flex flex-col'>
           <div className="nab--mobile--tablet-navBottom-search-wrapper w-full">
           <form className="relative">
