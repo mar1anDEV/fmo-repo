@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import React, { useState, useCallback, useRef,useEffect } from 'react';
 import btnMenu from '../assets/images/mobile-menu-icon.svg'
 import { FaLeaf, FaSearch, FaYoutube, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import logo from '../assets/images/logo.svg';
@@ -7,16 +8,45 @@ import "../assets/type.css";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
+  const menuRef = useRef(null);
+  
+  useEffect(() => {
+    const menuElement = menuRef.current;
+    if (isMenuOpen && menuElement) {
+      disableBodyScroll(menuElement);
+    } else if (menuElement) {
+      enableBodyScroll(menuElement);
+    }
+    
+    return () => {
+      if (menuElement) enableBodyScroll(menuElement);
+    };
+  }, [isMenuOpen])
+ 
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prevState => !prevState);
+  }, []);
+  
+ 
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
   
   const metaMenuLinks = [
-    
     { name: 'DE', path: '#', isLanguage: true, isActive: true, hasBorder: true},
-    { name: 'EN', path: '#', isLanguage: true, isActive: false, hasBorder: true },
-    { name: 'NL', path: '#', isLanguage: true, isActive: false,hasBorder: false },
+    { name: 'EN', path: 'en/', isLanguage: true, isActive: false, hasBorder: true },
+    { name: 'NL', path: 'nl/', isLanguage: true, isActive: false, hasBorder: false },
   ];
+  
   const [activeLanguage, setActiveLanguage] = useState(
     metaMenuLinks.find(language => language.isLanguage)?.name || ''
-  )
+  );
+  
+  
+  const handleLanguageChange = useCallback((language) => {
+    setActiveLanguage(language);
+    
+  }, []);
   
   const menuNavLinks = [
     { name: 'Anreise & Fliegen', path: 'https://www.fmo.de/flugplan-ziele/' },
@@ -54,26 +84,35 @@ function Header() {
     }
   ];
   
-  const footerlinks = [{linkName: "EASY PARK",hisPath:'https://parking.fmo.de/iPCP/admin/'},
+  const footerlinks = [
+    {linkName: "EASY PARK", hisPath:'https://parking.fmo.de/iPCP/admin/'},
     {linkName: "Imprint", hisPath: 'https://www.fmo.de/en/imprint/'},
-    {linkName:"Contact", hisPath: 'https://www.fmo.de/en/contact/'},
-    {linkName: "Privacy Policy", hisPath: 'https://www.fmo.de/en/privacy-policy/'}]
+    {linkName: "Contact", hisPath: 'https://www.fmo.de/en/contact/'},
+    {linkName: "Privacy Policy", hisPath: 'https://www.fmo.de/en/privacy-policy/'}
+  ];
+  
+  
+  const handleSearchSubmit = useCallback((e) => {
+    e.preventDefault();
+    
+  }, []);
+  
   return (
    <>
-    <header className="fmo--nav w-full h-auto py-4 lg:py-2 z-50 relative" style={{ fontFamily: 'Aeroport, sans-serif' }}>
+    <header className="fmo--nav bg-[#FFFFFF] w-full h-auto py-4 lg:py-2 z-50 relative" style={{ fontFamily: 'Aeroport, sans-serif' }}>
       <div className="container max-w-[1200px] mx-auto">
-        {/* Top row with logo and meta menu */}
+        
         <div className="flex mx-auto items-center container--nav--wrapper justify-between">
-          {/* Logo */}
+          
           <div className="lg:min-h-[120px] px-4 flex items-center">
             <a href="https://www.fmo.de">
               <img src={logo} alt="FMO Flughafen Münster/Osnabrück Logo" className='h-[35px] md:h-[40px] lg:h-[45px]'/>
             </a>
           </div>
           <div className='meta--form--mainNavLinks--fmo-container px-4'>
-            {/*meta menu, form, and main navigation (desktop) */}
+            
             <div className="hidden xl:flex gap-2.5 relative flex-col items-end">
-              {/* Top row: Meta menu and search */}
+              
               <div className="flex items-center justify-end">
                 <ul className="flex items-center space-x-2 mr-4">
                   <div className='jobs w-10 mr-6 relative'>
@@ -89,7 +128,7 @@ function Header() {
                       <a 
                         href={link.path} 
                         id={link.isLanguage && link.isActive ? 'active' : undefined}
-                        className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
+                        className={`text-md language-link ${link.isLanguage && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
                         style={{ color: '#00284480'}}
                       >
                         {link.name}
@@ -97,7 +136,7 @@ function Header() {
                     </li>
                   ))}
                 </ul>
-                <form className="relative">
+                <form className="relative" onSubmit={handleSearchSubmit}>
                   <input 
                     type="text" 
                     placeholder="Suchen" 
@@ -113,7 +152,7 @@ function Header() {
                   </button>
                 </form>
               </div>
-              <ul className='nav--link--container--wrapper-desktop flex gap-2.5 items-center justify-end'>
+              <ul className='nav--link--container--wrapper-desktop mt-1 flex gap-2.5 items-center justify-end'>
                 {menuNavLinks.map((navLink, navLinkIndex) => (
                   <li key={navLinkIndex} className="inline-block transform scale-90">
                     <a href={navLink.path} className="nav-link-container">
@@ -130,7 +169,7 @@ function Header() {
               </ul>
             </div>
             <div className="toggleNav xl:hidden">
-              <button onClick={()=> setIsMenuOpen(!isMenuOpen)} aria-expanded={isMenuOpen} aria-controls='xs--sm--md--devices-nav'>
+              <button onClick={toggleMenu} aria-expanded={isMenuOpen} aria-controls='xs--sm--md--devices-nav'>
                 <div className='btn--nav--image--wrapper'>
                   <img src={btnMenu} alt="Toggle Menu"/>
                 </div>
@@ -139,14 +178,20 @@ function Header() {
           </div>
         </div>
       </div>
-      {isMenuOpen && (
-  <div 
-    className="fixed inset-0 z-40 transition-opacity duration-300 backdrop-blur-xs"
-    onClick={() => setIsMenuOpen(false)} // Optional: clicking outside closes nav
-  ></div>
-)}
-      <nav id='xs--sm--md--devices-nav' className={`nab--mobile--tablet bg-white py-4 flex flex-col justify-between w-5/6 xl:hidden absolute top-0 left-0 z-50 transform transition-transform duration-500 min-h-[100dvh] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        {/* Top Navigation Section */}
+
+
+      {isMenuOpen ? (
+      
+          <div 
+          className="fixed inset-0 z-40 transition-opacity duration-300"
+          onClick={closeMenu}
+          id='overlay-active' 
+        ></div>
+      ) : null}
+
+
+      <nav id='xs--sm--md--devices-nav' ref={menuRef} className={`nab--mobile--tablet bg-white py-4 flex flex-col justify-between w-5/6 xl:hidden absolute top-0 left-0 z-50 transform transition-transform duration-500 min-h-[100dvh] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        
         <div className='nab--mobile--tablet-navTop overflow-y-auto grow'>
           <ul className='nab--mobile--tablet-navTop--inner pl-4 flex flex-col'>
             {menuNavLinks.map((navLink, navLinkIndex) => (
@@ -170,73 +215,69 @@ function Header() {
           </ul>
         </div>
         
-        {/* Bottom Search Section */}
+        
         <div className='nab--mobile--tablet-navBottom container grow justify-end gap-2.5 mt-auto px-6 flex flex-col'>
           <div className="nab--mobile--tablet-navBottom-search-wrapper w-full">
-          <form className="relative">
-          <input type="text" className='text-base py-2 pl-3 pr-10 w-full border outline-0 border-[#002844]' />
-                  <button 
-                    type="submit" 
-                    className="absolute inset-y-0 right-0 flex items-center px-3 text-white bg-[#002844] hover:text-blue-700"
-                    aria-label="Suche starten"
-                  >
-                    <FaSearch size={14} />
-                  </button>
-                </form>
+            <form className="relative" onSubmit={handleSearchSubmit}>
+              <input type="text" className='text-base py-2 pl-3 pr-10 w-full border outline-0 border-[#002844]' />
+              <button 
+                type="submit" 
+                className="absolute inset-y-0 right-0 flex items-center px-3 text-white bg-[#002844] hover:text-blue-700"
+                aria-label="Suche starten"
+              >
+                <FaSearch size={14} />
+              </button>
+            </form>
           </div>
           <ul className="flex items-center space-x-2 mr-4">
+            <div className='jobs w-10 mr-6 relative'>
+              <a href="https://www.fmo.de/arbeiten-am-fmo/" className='m-auto'>Jobs</a>
+              <div className="absolute flex justify-center align-middle w-4 h-4 bg-red-600 top-[-6px] right-[-5px] rounded-full">
+                <span className='text-white font-[100] text-[10px]'>5</span>
+              </div>
+            </div>
 
-          <div className='jobs w-10 mr-6 relative'>
-                      <a href="https://www.fmo.de/arbeiten-am-fmo/" className='m-auto'>Jobs</a>
-                      
-                            <div className="absolute flex justify-center align-middle w-4 h-4 bg-red-600 top-[-6px] right-[-5px] rounded-full">
-                                <span className='text-white font-[100] text-[10px]'>5</span>
-                            </div>
-                         
-                  </div>
-
-                  {metaMenuLinks.map((link, index) => (
-                    <li key={index} id={link.isJobs ? 'j-active' : undefined}>
-                      <a 
-                        href={link.path} 
-                        id={link.isLanguage && link.isActive ? 'active' : undefined}
-                        className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
-                        style={{ color: '#00284480' }}
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
+            {metaMenuLinks.map((link, index) => (
+              <li key={index} id={link.isJobs ? 'j-active' : undefined}>
+                <a 
+                  href={link.path} 
+                  id={link.isLanguage && link.isActive ? 'active' : undefined}
+                  className={`text-md hover:text-blue-700 ${link.isLanguage  && link.isActive || link.hasBorder ? 'font-medium pr-2 has-border text-[#002844]' : ''}`}
+                  style={{ color: '#00284480' }}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
           <ul className="social-links flex items-center space-x-2 mr-4">
-  {socialLinks.map((item) => (
-    <li key={item.name}>
-      <a 
-        href={item.path}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Link to ${item.name}`}
-      >
-        {item.icon}
-      </a>
-    </li>
-  ))}
-</ul>
-<div className="footer--wrapper">
-          <div className="footer-container mb-2.5">
-            <ul className='block columns-2'>
-              {footerlinks.map((link,index)=>(
-                <li key={index} className='block'>
-                  <a href={link.hisPath}>
-                    <span className='text-[#575757] font-thin'>{link.linkName}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {socialLinks.map((item) => (
+              <li key={item.name}>
+                <a 
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Link to ${item.name}`}
+                >
+                  {item.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="footer--wrapper">
+            <div className="footer-container mb-2.5">
+              <ul className='block columns-2'>
+                {footerlinks.map((link,index)=>(
+                  <li key={index} className='block'>
+                    <a href={link.hisPath}>
+                      <span className='text-[#575757] font-thin'>{link.linkName}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-        </div>
-        
       </nav>
     </header>
    </>

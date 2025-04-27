@@ -7,14 +7,58 @@
   --swiper-navigation-color: #e0e0e0; /* Lighter gray navigation arrows */
   --swiper-pagination-color: #e0e0e0; /* Lighter gray pagination dots */
 }
-
+.nav-pill {
+  padding: 38px 30px;
+  border-color: #1d0a89 !important;
+  border-style: solid;
+  border-width: 0;
+  border-right: 1px solid ;
+  border-top: 1px solid ;
+}
+.container-zielen{
+  padding: 28px 33px 10px 28px;
+}
+.ziel-btn{
+  border-radius: 20px;
+  cursor: pointer;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border: 1px solid #575757;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+.btn-ziele-container{
+  height: 100% !important;
+}
+.fmo--flights-zielen {
+  background-image: url('https://www.fmo.de/typo3conf/ext/basetemplate/Resources/Public/Images/pfad-flugzeug.svg');
+  background-repeat: no-repeat;
+  background-position: right top calc(20% - 40px);
+  background-size: cover;
+}
+.nav-pill.active-pill{
+  border: none;
+}
 .has-border{
   border-right: 2px solid #00000011;
 }
+.panels--wrapper{
+  width: 100% !important;
+}
+#overlay-active {
+  backdrop-filter: brightness(0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
 
+.language-link {
+  color: #00284480 !important;
+  transition: color 300ms ease-in-out;
+}
 
-
-
+.language-link:hover {
+  color: #002844 !important;
+}
 
 .swiper-button-prev {
   color: #f0f0f0;
@@ -26,16 +70,36 @@
   right: 5%;
 }
 
-
+.swiper-pagination {
+  bottom: auto !important;
+  bottom: 15% !important;
+  z-index: 100;
+}
 @media (min-width: 1600px) {
 
-  .swiper-button-prev {
-    left: 15%;
-  }
+  .swiper-pagination {
+    bottom: auto !important;
+    bottom: 10% !important;
+    z-index: 100;
+}
 
-  .swiper-button-next {
+.swiper-pagination-bullet {
+    background: white;
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #002844;
+}
+
+.swiper-button-prev {
+    left: 15%;
+}
+
+.swiper-button-next {
     right: 15%;
-  }
+}
   .banner--text{
     top: 40%;
     left: 20%;
@@ -45,6 +109,12 @@
   .swiper-button-prev,
   .swiper-button-next {
     display: none;
+  }
+  .fmo--flights-zielen {
+    background-image: url('https://www.fmo.de/typo3conf/ext/basetemplate/Resources/Public/Images/pfad-flugzeug.svg');
+    background-repeat: no-repeat;
+    background-position: right top calc(20% - 60px); 
+    background-size: cover;
   }
 }
 

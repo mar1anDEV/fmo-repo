@@ -1,13 +1,36 @@
 
+import CretaLandscape from '../assets/images/Creta Landscape/slider_kreta.jpg';
+import CretaLandscapeLarge from '../assets/images/Crete_Landscape_Large/csm_slider_kreta_7607beed83.webp';
+import CretaLandscapeXL from '../assets/images/Crete_Landscape_XL/csm_slider_kreta_8c0d8b05a2.webp';
+import CretaLandscapeMedium from '../assets/images/Crete_Landscape_Medium/csm_slider_kreta_c0f4dd3556.webp';
+import CretaLandscapeSmall from '../assets/images/Crete_Landscape_Small/csm_slider_kreta_22cd717e85.webp';
+import CretaLandscapeXSmall from '../assets/images/Crete_Landscape_XSmall/csm_slider_kreta_2c53e8d36e.webp'
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css'
+import 'swiper/swiper-bundle.css';
 
 
 
 function Carousel() {
 
     const carouselBanners = [
+      {
+        id: 1,
+        title: 'Hallo Sommer!',
+        titleClass: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl text-[#002844] font-bold',
+        description: '#wirfliegenabhier in Richtung Sommer. Wer is dabei?',
+        descriptionClass: 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#212529] font-semibold',
+        images: {
+          default: 'https://www.fmo.de/fileadmin/Content/Home/slider_kreta.jpg',
+          xs: 'https://www.fmo.de/fileadmin/_processed_/f/a/csm_slider_kreta_51a5e073a3.jpg',
+          sm: 'https://www.fmo.de/fileadmin/_processed_/f/a/csm_slider_kreta_2c53e8d36e.jpg',
+          md: 'https://www.fmo.de/fileadmin/_processed_/f/a/csm_slider_kreta_22cd717e85.jpg',
+          lg: 'https://www.fmo.de/fileadmin/_processed_/f/a/csm_slider_kreta_c0f4dd3556.jpg',
+          xl: 'https://www.fmo.de/fileadmin/_processed_/f/a/csm_slider_kreta_7607beed83.jpg',
+          xxl: 'https://www.fmo.de/fileadmin/_processed_/f/a/csm_slider_kreta_8c0d8b05a2.jpg'
+        },
+        alt: 'Image Banner Kreta'
+      },
         
         {
             id: 2,
@@ -71,6 +94,7 @@ function Carousel() {
 
     return(
         <div className="carousel-container relative lg:h-[580px]">
+          
   <Swiper
     className="h-full [&_.swiper-button-next]:text-white [&_.swiper-button-prev]:text-white relative"
     
