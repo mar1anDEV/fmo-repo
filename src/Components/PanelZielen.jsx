@@ -20,8 +20,8 @@ const PanelZielen = () => {
   ];
   
   return (
-    <section className='fmo--flights-zielen bg-white w-sm lg:w-3xl xl:w-sm box-content'>
-      <div className='container-zielen flex flex-col align-middle justify-around'>
+    <section className='fmo--flights-zielen bg-white w-xl sm:w-2xl md:w-3xl lg:w-4xl xl:w-sm shadow-xl'>
+      <div className='container-zielen mt-0 lg:mt-10 flex flex-col align-middle justify-around'>
         <header>
           <h1 className='text-2xl mb-9.5'>Ziele ab FMO</h1>
         </header>

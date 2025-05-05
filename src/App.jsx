@@ -14,7 +14,7 @@ function App() {
         <div className="main--content relative h-auto">
           <Carousel/>
         </div>
-        <div className='relative block  transform -translate-y-[5vh] z-40 '>
+        <div className='relative block  transform sm:-translate-y-[0vh] md:-translate-y-[5vh] xl:-translate-y-[5vh] z-40 '>
         <div className="panels ">
           <div className="panels--wrapper flex flex-wrap justify-center gap-7 xl:space-x-8 xl:mx-auto">
             <PanelFlights/>

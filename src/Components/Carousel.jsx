@@ -1,10 +1,4 @@
 
-import CretaLandscape from '../assets/images/Creta Landscape/slider_kreta.jpg';
-import CretaLandscapeLarge from '../assets/images/Crete_Landscape_Large/csm_slider_kreta_7607beed83.webp';
-import CretaLandscapeXL from '../assets/images/Crete_Landscape_XL/csm_slider_kreta_8c0d8b05a2.webp';
-import CretaLandscapeMedium from '../assets/images/Crete_Landscape_Medium/csm_slider_kreta_c0f4dd3556.webp';
-import CretaLandscapeSmall from '../assets/images/Crete_Landscape_Small/csm_slider_kreta_22cd717e85.webp';
-import CretaLandscapeXSmall from '../assets/images/Crete_Landscape_XSmall/csm_slider_kreta_2c53e8d36e.webp'
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -72,7 +66,7 @@ function Carousel() {
             titleClass: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl text-[#002844] font-bold',
             description: (
               <>
-                Alicante, Korfu, London, Málaga, Palma und Zadar zu<br />
+                Alicante, Korfu, London, Málaga, Palma und Zadar zu
                 Schnäppchenpreisen!
               </>
             ),
@@ -125,7 +119,7 @@ function Carousel() {
             className="w-full h-full object-cover"
           />
         </picture>
-        <div className="banner--text top-[40%] left-[3%] sm:left-[5%] md:left-[5%] lg:left-[8%] flex flex-col gap-3 absolute z-50">
+        <div className="banner--text px-5 top-[25%] lg:top-[40%] left-[0] sm:left-[5%] md:left-[5%] lg:left-[8%] flex flex-col gap-3 absolute z-50">
   <span className={`banner--title smoke-effect ${banner.titleClass || ''}`}>{banner.title}</span>
   <span className={`banner--gradient smoke-effect ${banner.descriptionClass || ''}`}>{banner.description}</span>
 </div>

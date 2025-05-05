@@ -1,35 +1,84 @@
-
-import React from 'react';
+import React, { useState } from 'react';
+import TabPanelDeparture from './TabPanelComponents/TabPanelDeparture';
+import TabPanelArrival from './TabPanelComponents/TabPanelArrival';
+import TabPanelParking from './TabPanelComponents/TabPanelParking';
 
 const PanelFlights = () => {
-
-    
-
     const menuNavPills = [
-        {name: 'Abflug', svgDesc:'Abflug Icon', svgElement: 'https://www.fmo.de/typo3conf/ext/do_flight_info/Resources/Public/Icons/plane-departure-solid.svg', isActive: true, role: 'tab', controls:'v-pills-departure'},
-        {name: 'Ankunft', svgDesc:'Ankunft Icon', svgElement: 'https://www.fmo.de/typo3conf/ext/do_flight_info/Resources/Public/Icons/plane-arrival-solid.svg', isActive: false, role: 'tab', controls:'v-pills-ankunft'},
-        {name: 'Parken', svgDesc:'Parking Icon', svgElement: 'https://www.fmo.de/typo3conf/ext/do_flight_info/Resources/Public/Icons/car-solid.svg', isActive: false,role: 'tab', controls:'v-pills-parking'}
+            {name: 'Abflug', svgDesc:'Abflug Icon',
+            svgElement: 'https://www.fmo.de/typo3conf/ext/do_flight_info/Resources/Public/Icons/plane-departure-solid.svg', 
+            isActive: true, role: 'tab',id: 'v-pills-departure-tab', controls:'v-pills-departure'},
+        
+        
+        {name: 'Ankunft', svgDesc:'Ankunft Icon', 
+         svgElement: 'https://www.fmo.de/typo3conf/ext/do_flight_info/Resources/Public/Icons/plane-arrival-solid.svg',
+         isActive: false, role: 'tab',id: 'v-pills-ankunft-tab', controls:'v-pills-ankunft'},
+
+
+
+        {name: 'Parken', svgDesc:'Parking Icon', 
+         svgElement: 'https://www.fmo.de/typo3conf/ext/do_flight_info/Resources/Public/Icons/car-solid.svg',
+         isActive: false,role: 'tab',id: 'v-pills-parking-tab', controls:'v-pills-parking'}
     ]
-  return (
-    <section className='fmo--flights bg-[#fff] w-md md:w-2xl lg:w-3xl xl:w-3xl'>
-        <div className='flex p-0 m-0'>
-            <ul className='flex flex-col'>
-                {menuNavPills.map((buttonPill,buttonIndex) =>(
-                        <button key={buttonIndex}  className={`nav-pill cursor-pointer ${buttonPill.isActive ? 'active-pill' : ''}`}
-                        type='button' aria-selected={buttonPill.isActive}
-                        aria-controls={buttonPill.controls}
-                        role={buttonPill.role}>
+    const [isPillActive, setPillActive] = useState(false);
+    const togglePillActive = ()=>{
+        setPillActive(!isPillActive)
+    }
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const switchTab = (index) => {
+        setActiveTabIndex(index);
+    };
+    return (
+        
+        <section className='fmo--flights bg-[#fff] w-xl sm:w-2xl md:w-3xl lg:w-4xl xl:w-3xl shadow-xl'>
+            <div className='flex p-0 m-0  relative'>
+                <ul className='flex buttons--md--lg flex-col mr-3.5'>
+                    {menuNavPills.map((buttonPill, buttonIndex) => (
+                        <button 
+                            key={buttonIndex}  
+                            onClick={() => switchTab(buttonIndex)}
+                            className={`nav-pill cursor-pointer ${buttonPill.isActive ? 'active-pill' : ''}`}
+                            type='button'
+                            id={buttonPill.id} 
+                            aria-selected={buttonIndex === activeTabIndex}
+                            aria-controls={buttonPill.controls}
+                            role={buttonPill.role}
+                        >
                             <span className=''>
-                            <img src={buttonPill.svgElement} className='mx-auto block' alt={buttonPill.svgDesc}/>
-                            {buttonPill.name}
-                        </span>
+                                <img src={buttonPill.svgElement} className='mx-auto block' alt={buttonPill.svgDesc}/>
+                                {buttonPill.name}
+                            </span>
                         </button>
-                ))}
-            </ul>
-            <ul></ul>
-        </div>
-    </section>
-  );
+                    ))}
+                </ul>
+                <div className='buttons--xs--sm min-w-full -top-10 absolute'>
+                <ul className='buttons--xs--sm--container flex justify-between space-x-1 '>
+                {menuNavPills.map((buttonPill, buttonIndex) => (
+                        <button 
+                            key={buttonIndex}
+                            onClick={() => switchTab(buttonIndex)}
+                            id={`mobile-${buttonPill.id}`} 
+                            className={`nav-pill--xs--sm px-4 py-2  w-1/3 bg-white ${buttonPill.isActive ? 'active-pill' : ''}`}
+                            type='button' 
+                            aria-selected={buttonIndex === activeTabIndex}
+                            aria-controls={buttonPill.controls}
+                            role={buttonPill.role}
+                        >
+                            <span className=''>
+                                {buttonPill.name}
+                            </span>
+                        </button>
+                    ))}
+                </ul>
+                </div>
+                <div className="tabContent grow" id='v-pills-tabContent'>
+                <TabPanelDeparture isActive={activeTabIndex === 0}/>
+                <TabPanelArrival isActive={activeTabIndex === 1}/>
+                <TabPanelParking isActive={activeTabIndex === 2}/>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default PanelFlights;

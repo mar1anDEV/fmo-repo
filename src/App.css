@@ -4,12 +4,44 @@
   font-family: 'Aeroport', sans-serif;
 }
 :root {
-  --swiper-navigation-color: #e0e0e0; /* Lighter gray navigation arrows */
-  --swiper-pagination-color: #e0e0e0; /* Lighter gray pagination dots */
+  --swiper-navigation-color: #e0e0e0;
+  --swiper-pagination-color: #e0e0e0; 
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+.dropdown-link{
+  font-family: 'Aeroport', sans-serif;
+  font-size: 18px;
+}
+.dropdown-link-special{
+  color: #4bb699;
+  color: #002844;
+}
+
+custom-select option {
+  font-size: 1.7rem;
+  font-family: 'Aeroport', sans-serif;
+}
+
+.custom-select option:checked {
+  font-weight: 800;
+  background-color: #f3f4f6;
+}
+.tr-even{
+  width: 100%;
+}
+.tabPanel--header-header-text{
+  font-size: 25px;
+}
+.tabContent{
+  padding: 28px 45px 16px 14px;
 }
 .nav-pill {
   padding: 38px 30px;
-  border-color: #1d0a89 !important;
+  border-color: rgb(168, 184, 200)!important;
   border-style: solid;
   border-width: 0;
   border-right: 1px solid ;
@@ -23,7 +55,7 @@
   cursor: pointer;
   padding-top: 1px;
   padding-bottom: 1px;
-  border: 1px solid #575757;
+  border: 1px solid #bbb8b8;
   background-color: #f0f0f0;
   text-align: center;
 }
@@ -33,8 +65,18 @@
 .fmo--flights-zielen {
   background-image: url('https://www.fmo.de/typo3conf/ext/basetemplate/Resources/Public/Images/pfad-flugzeug.svg');
   background-repeat: no-repeat;
-  background-position: right top calc(20% - 40px);
+  background-position: right top calc(20% - 20px);
   background-size: cover;
+}
+.tabPanel{
+  transition: 300ms;
+}
+.all-fligts-btn{
+  padding: 13px 28px 12px;
+  transition: 300ms;
+}
+.all-fligts-btn:hover{
+  background-color: #0a4066;
 }
 .nav-pill.active-pill{
   border: none;
@@ -82,7 +124,44 @@
     bottom: 10% !important;
     z-index: 100;
 }
+}
+@media (max-width: 768px) {
+  .buttons--md--lg{
+    display: none;
+  }
+  .tabContent{
+    padding: 15px 15px;
+  }
+  .panels--wrapper{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .fmo--flights-zielen {
+    background-position-y: calc(100% - 99%) !important;
+    background-position-x: calc(100% - -18px) !important; 
+    background-size: auto !important;
+  }
+  .container-zielen{
+    padding: 25px;
 
+  }
+}
+.banner--gradient{
+  hyphens: none;
+  word-break: keep-all;
+}
+@media (min-width: 768px) {
+  .buttons--xs--sm{
+    display: none;
+  }
+}
+#nav-pill-inactive{
+  background-color: rgb(250, 249, 249);
+}
+#nav-pill-active {
+  transform: scale(1.1) translateY(-2px) translateX(5px);
+  transition: transform 0.2s ease;
+}
 .swiper-pagination-bullet {
     background: white;
     opacity: 0.7;
@@ -100,11 +179,8 @@
 .swiper-button-next {
     right: 15%;
 }
-  .banner--text{
-    top: 40%;
-    left: 20%;
-  }
-}
+  
+
 @media (max-width: 1300px) {
   .swiper-button-prev,
   .swiper-button-next {
@@ -143,5 +219,21 @@
   padding-right: .375rem;
   margin-right: .375rem;
   border-right: 1px solid #cbd6dd;
+  color: #002844;
+}
+
+
+@media (min-width: 1300px) {
+  .banner--text{
+    top: 40%;
+    left: 20%;
+  }
+
+}
+
+.buttons--md--lg{
+  height: 100% !important;
+}
+.universal-txt{
   color: #002844;
 }
