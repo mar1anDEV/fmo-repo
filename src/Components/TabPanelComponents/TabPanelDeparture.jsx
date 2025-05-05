@@ -6,7 +6,7 @@ const TabPanelDeparture = ({ isActive }) => {
     return (
         <div 
             id="v-pills-departure" 
-            className={`tab-panel ${isActive ? 'block' : 'hidden'}`}
+            className={`tab-panel ${isActive ? 'block tabFade' : 'hidden'}`}
             role="tabpanel"
             aria-labelledby="v-pills-departure-tab"
         >
