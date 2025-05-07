@@ -3,6 +3,7 @@ import Header from './Components/Header'
 import Carousel from './Components/Carousel';
 import PanelFlights from './Components/PanelFlights';
 import PanelZielen from './Components/PanelZielen';
+import Card from './Components/Card'
 import './App.css'
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
             <PanelZielen/>
             </div>
           </div>
+        </div>
+        <div className="cards-container py-2 w-full">
+            <Card/>
         </div>
       </main>
     </>

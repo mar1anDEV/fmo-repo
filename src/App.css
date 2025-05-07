@@ -243,7 +243,9 @@ custom-select option {
   color: #002844;
 }
 
-
+.card-body{
+  padding: 15px 28px 28px ;
+}
 
 @keyframes fadeIn {
   from {
@@ -262,7 +264,15 @@ custom-select option {
   height: 0;
   overflow: hidden;
 }
-
+.card-1{
+  background-color: #4bb699;
+}
+.card-2{
+  background-color: #0a4066;
+}
+.card-3{
+  background-color: blueviolet;
+}
 .tabFade,
 .border--departure-btn,
 .border--arrival-btn,
