@@ -61,6 +61,10 @@ const Cards= () => {
       ]
     return (
         <div className='py-2 px-8 mx-auto lg:max-w-7xl'>
+
+          <header className='mb-6'>
+            <h2 className='text-2xl text-[#002844]'>Informationen zu Ihrer Reise</h2>
+          </header>
             <div className='cards-wrapper  w-full h-auto flex space-x-4 justify-between flex-wrap'>
             {cards.map((cardObj,cardIndex)=>(
          <div key={cardIndex} className='bg-white max-w-sm h-auto rounded-2xl'>

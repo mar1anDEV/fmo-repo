@@ -46,7 +46,7 @@ const TabPanelDeparture = ({ isActive }) => {
             
             <a 
                 href="https://www.fmo.de/abflug-ankunft/" 
-                className='all-fligts-btn text-white text-md rounded-md mt-4 cursor-pointer block md:w-auto lg:w-fit bg-[#002844]  text-center'
+                className='all-fligts-btn text-white text-md rounded-md mt-4 cursor-pointer block sm:w-auto md:w-fit lg:w-fit bg-[#002844]  text-center'
                 >
                 Alle Flüge...
                 </a>
