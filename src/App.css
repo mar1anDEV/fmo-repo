@@ -1,0 +1,303 @@
+@import "tailwindcss";
+@import "./assets/type.css";
+*{
+  font-family: 'Aeroport', sans-serif;
+  box-sizing: border-box;
+}
+:root {
+  --swiper-navigation-color: #e0e0e0;
+  --swiper-pagination-color: #e0e0e0; 
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+.cards--container{
+  width: 100% !important;
+}
+.dropdown-link{
+  font-family: 'Aeroport', sans-serif;
+  font-size: 18px;
+}
+.dropdown-link-special{
+  color: #4bb699;
+  color: #002844;
+}
+
+.footer-fmo{
+  background-color: rgba(153, 169, 180, .15);
+}
+
+
+
+
+
+custom-select option {
+  font-size: 1.7rem;
+  font-family: 'Aeroport', sans-serif;
+}
+
+.custom-select option:checked {
+  font-weight: 800;
+  background-color: #f3f4f6;
+}
+
+
+#overlay-active {
+  backdrop-filter: brightness(0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.language-link {
+  color: #00284480 !important;
+  transition: color 300ms ease-in-out;
+}
+
+.language-link:hover {
+  color: #002844 !important;
+}
+
+.swiper-button-prev {
+  color: #f0f0f0;
+  left: 5%;
+}
+
+.swiper-button-next {
+  color: #f0f0f0;
+  right: 5%;
+}
+
+.swiper-pagination {
+  bottom: auto !important;
+  bottom: 15% !important;
+  z-index: 100;
+}
+@media (min-width: 1600px) {
+
+  .swiper-pagination {
+    bottom: auto !important;
+    bottom: 10% !important;
+    z-index: 100;
+}
+}
+
+@media (max-width: 768px) {
+  .buttons--md--lg{
+    display: none;
+  }
+  
+}
+.banner--gradient{
+  hyphens: none;
+  word-break: keep-all;
+}
+
+#nav-pill-inactive{
+  background-color: rgb(250, 249, 249);
+}
+#nav-pill-active {
+  transform: scale(1.1) translateY(-2px) translateX(5px);
+  transition: transform 0.2s ease;
+}
+.swiper-pagination-bullet {
+    background: white;
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #002844;
+}
+
+.swiper-button-prev {
+    left: 15%;
+}
+
+.swiper-button-next {
+    right: 15%;
+}
+  
+
+@media (max-width: 1300px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
+
+#j-active a,
+#active {
+  color: #002844 !important;
+  font-weight: 500;
+}
+.smoke-effect {
+  position: relative;
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.7),
+    0 0 24px rgba(255, 255, 255, 0.6),
+    0 0 36px rgba(255, 255, 255, 0.5),
+    0 0 48px rgba(255, 255, 255, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.3);
+}
+
+
+
+.list-meta-language{
+  font-family: 'Aeroport', sans-serif;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  display: inline;
+  padding-right: .375rem;
+  margin-right: .375rem;
+  border-right: 1px solid #cbd6dd;
+  color: #002844;
+}
+
+
+@media (min-width: 1300px) {
+  .banner--text{
+    top: 40%;
+    left: 20%;
+  }
+
+}
+
+.container-zielen{
+  padding: 18px 33px 10px 18px;
+}
+
+.card-body{
+  padding: 15px 28px 28px;
+}
+.all-fligts-btn{
+  padding: 13px 28px 12px;
+  transition: 300ms;
+}
+.all-fligts-btn:hover{
+  background-color: #0a4066;
+}
+
+
+.tabFade,
+.border--departure-btn,
+.border--arrival-btn,
+.border--parking-btn {
+  opacity: 1;
+  height: auto;
+  animation: fadeIn 0.75s ease-in-out forwards; /* Increased from 0.33s to 0.75s */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.ziel-btn{
+  border-radius: 20px;
+  cursor: pointer;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border: 1px solid #bbb8b8;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+.btn-ziele-container{
+  height: 100% !important;
+}
+.container-zielen {
+  background-image: url('https://www.fmo.de/typo3conf/ext/basetemplate/Resources/Public/Images/pfad-flugzeug.svg');
+  background-repeat: no-repeat;
+  background-position: right top calc(20% - 50px);
+  background-size: cover;
+}
+
+.nav-pill {
+  padding: 38px 30px;
+  border-color: rgb(168, 184, 200)!important;
+  border: 1px solid;
+  border-left:none;
+}
+
+.nav-pill-border{
+  border-bottom: 1px solid;
+}
+
+.nav-pill.active-pill{
+  border: none;
+}
+.has-border{
+  border-right: 2px solid #00000011;
+}
+.xs--sm--md--devices-nav{
+  z-index: 999999999 !important;
+}
+
+
+
+
+@media (min-width: 768px) {
+  .content{
+    padding: 42px 60px 42px 98px !important;
+  }
+
+}
+.content{
+  padding: 40px 0px;
+  width: 100% !important;
+}
+
+
+
+.bg-image-angebot {
+  position: relative;
+  background-image: url('https://www.fmo.de/fileadmin/_processed_/0/3/csm_startseite-angebote_82ef137057.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 413px;
+  display: block;
+}
+
+.bg-image-klima{
+  position: relative;
+  background-image: url('https://www.fmo.de/fileadmin/_processed_/1/a/csm_Slider_Umweltbericht_8a4914a145.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 413px;
+  display: block;
+}
+
+.container-angebot{
+  z-index: 99999;
+}
+
+
+@media (max-width: 768px) {
+  .bg-image-angebot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(53, 105, 150, 0.5);
+  }
+  .bg-image-klima::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(53, 105, 150, 0.5);
+  }
+}
+
+.carousel-navigation-wrapper {
+  min-width: 100% !important;
+}
